@@ -16,9 +16,12 @@
 
   <body>
     <header>
-      <nav class="w-11/12 mx-auto py-3 flex justify-between items-center border-b">
+      <!-- main navbar -->
+      <nav
+        class="w-11/12 mx-auto py-3 flex justify-between items-center border-b"
+      >
         <div class="logo w-[100px]">
-          <img  src="./assets/Logo.png" alt="" />
+          <img src="./assets/Logo.png" alt="" />
         </div>
         <div class="search">
           <label class="input input-bordered flex items-center gap-2">
@@ -41,9 +44,18 @@
           <button class="btn">SORT</button>
         </div>
       </nav>
+
+      <!-- categories navbar -->
+      <nav id="categories" class="py-3 flex gap-5 justify-center"></nav>
     </header>
 
+    <main>
+      <section id="videos" class="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 py-10">
+
+      </section>
+    </main>
+
     <!-- scripts -->
-     <script src="./scripts/video.js"></script>
+    <script src="./scripts/video.js"></script>
   </body>
 </html>
