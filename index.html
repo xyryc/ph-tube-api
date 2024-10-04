@@ -28,7 +28,7 @@
         </div>
         <div class="search">
           <label class="input input-bordered flex items-center gap-2">
-            <input type="text" class="grow" placeholder="Search" />
+            <input id="search-input" type="text" class="grow" placeholder="Search" />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 16 16"
@@ -58,7 +58,7 @@
         class="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 py-10"
       ></section>
 
-      <!-- Open the modal using ID.showModal() method -->
+      <!-- modal -->
       <button
         id="showModalData"
         class="btn hidden"
@@ -66,11 +66,10 @@
       >
         open modal
       </button>
-      <dialog id="customModal" class="modal modal-bottom sm:modal-middle">
+      <dialog id="customModal" class="modal modal-bottom sm:modal-middle ">
         <div class="modal-box">
-          <div id="modal-content">
+          <div id="modal-content" class="space-y-1">
             <!-- content -->
-             Hello!
           </div>
           <div class="modal-action">
             <form method="dialog">
