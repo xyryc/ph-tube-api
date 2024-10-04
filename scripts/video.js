@@ -23,7 +23,7 @@ const loadCategories = () => {
 };
 
 const loadVideos = () => {
-  fetch("https://openapi.programming-hero.com/api/phero-tube/videos")
+  fetch("https://openapi.programming-hero.com/api/phero-tube/videos?title=")
     .then((res) => res.json())
     .then((data) => displayVideos(data.videos))
     .catch((error) => console.log(error));
@@ -42,6 +42,27 @@ const loadCategoryVideos = (id) => {
       displayVideos(data.category);
     })
     .catch((error) => console.log(error));
+};
+
+const loadDetails = async (videoId) => {
+  const uri = `https://openapi.programming-hero.com/api/phero-tube/video/${videoId}`;
+  const res = await fetch(uri);
+  const data = await res.json();
+  displayDetails(data.video);
+};
+
+const displayDetails = (video) => {
+  const detailsContainer = document.getElementById("modal-content");
+
+  detailsContainer.innerHTML = `
+    <img src='${video.thumbnail}'/>
+    <p> ${video.description} </p>
+  `;
+
+  // way 1
+  document.getElementById("showModalData").click();
+  // way 2
+  // document.getElementById("customModal").showModal();
 };
 
 const displayVideos = (videos) => {
@@ -89,15 +110,21 @@ const displayVideos = (videos) => {
         </div>
         <div>
             <h2 class='font-bold '>${video.title}</h2>
+ 
             <div class='flex items-center gap-2'>
-            <p class='text-gray-400'>${video.authors[0].profile_name}</p>
-            ${
-              video.authors[0].verified === true
-                ? `<img class='w-5' src='https://img.icons8.com/?size=48&id=D9RtvkuOe31p&format=png' />`
-                : ""
-            }
+              <p class='text-gray-400'>${video.authors[0].profile_name}</p>
+              ${
+                video.authors[0].verified === true
+                  ? `<img class='w-5' src='https://img.icons8.com/?size=48&id=D9RtvkuOe31p&format=png' />`
+                  : ""
+              }
             </div>
-            <p class="text-gray-500"> ${video.others.views} Views</p>
+            <div class="flex gap-24">
+              <p class="text-gray-500"> ${video.others.views} Views</p>
+              <p> <button onclick="loadDetails('${video.video_id}')"
+                          class="btn btn-outline btn-xs btn-info">Details</button>
+               </p>
+            </div>
         </div>
       </div>
     `;
@@ -112,7 +139,9 @@ const displayCategories = (categories) => {
   categories.forEach((item) => {
     const buttonContainer = document.createElement("div");
     buttonContainer.innerHTML = `
-      <button id="btn-${item.category_id}" onclick="loadCategoryVideos(${item.category_id})" class='btn category-btn'>
+      <button id="btn-${item.category_id}"
+       onclick="loadCategoryVideos(${item.category_id})" 
+       class='btn btn-outline category-btn'>
         ${item.category}
       </button>
     `;
