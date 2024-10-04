@@ -105,31 +105,31 @@ const displayVideos = (videos) => {
           }
 
         </figure>
-      <div class="px-0 py-2 flex gap-2">
-        <div>
-            <img class='w-10 h-10 rounded-full object-cover' src=${
-              video.authors[0].profile_picture
-            }/>
+        <div class="px-0 py-2 flex gap-2">
+          <div>
+              <img class='w-10 h-10 rounded-full object-cover' src=${
+                video.authors[0].profile_picture
+              }/>
+          </div>
+          <div>
+              <h2 class='font-bold '>${video.title}</h2>
+  
+              <div class='flex items-center gap-2'>
+                <p class='text-gray-400'>${video.authors[0].profile_name}</p>
+                ${
+                  video.authors[0].verified === true
+                    ? `<img class='w-5' src='https://img.icons8.com/?size=48&id=D9RtvkuOe31p&format=png' />`
+                    : ""
+                }
+              </div>
+              <div class="flex gap-24">
+                <p class="text-gray-500"> ${video.others.views} Views</p>
+                <p> <button onclick="loadDetails('${video.video_id}')"
+                            class="btn btn-outline btn-xs btn-info">Details</button>
+                </p>
+              </div>
+          </div>
         </div>
-        <div>
-            <h2 class='font-bold '>${video.title}</h2>
- 
-            <div class='flex items-center gap-2'>
-              <p class='text-gray-400'>${video.authors[0].profile_name}</p>
-              ${
-                video.authors[0].verified === true
-                  ? `<img class='w-5' src='https://img.icons8.com/?size=48&id=D9RtvkuOe31p&format=png' />`
-                  : ""
-              }
-            </div>
-            <div class="flex gap-24">
-              <p class="text-gray-500"> ${video.others.views} Views</p>
-              <p> <button onclick="loadDetails('${video.video_id}')"
-                          class="btn btn-outline btn-xs btn-info">Details</button>
-               </p>
-            </div>
-        </div>
-      </div>
     `;
 
     videoContainer.append(card);
